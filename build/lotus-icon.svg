@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="40" y1="216" x2="216" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff5ca8"/>
+      <stop offset="0.55" stop-color="#b06cff"/>
+      <stop offset="1" stop-color="#ffc24b"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14121f"/>
+      <stop offset="1" stop-color="#0b0b12"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="128" cy="150" r="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b06cff" stop-opacity="0.45"/>
+      <stop offset="0.5" stop-color="#ff5ca8" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="256" height="256" rx="56" fill="url(#bg)"/>
+  <rect x="3" y="3" width="250" height="250" rx="53" fill="none" stroke="url(#g)" stroke-width="3" opacity="0.5"/>
+  <circle cx="128" cy="150" r="112" fill="url(#glow)"/>
+  <g transform="translate(38,44) scale(3.75)">
+    <path d="M24 5 C28 16 28 28 24 41 C20 28 20 16 24 5 Z" fill="url(#g)"/>
+    <path d="M24 41 C16 31 12 21 12 12 C20 16 24 29 24 41 Z" fill="url(#g)" opacity="0.85"/>
+    <path d="M24 41 C32 31 36 21 36 12 C28 16 24 29 24 41 Z" fill="url(#g)" opacity="0.85"/>
+    <path d="M24 41 C12 37 6 29 4 21 C14 21 22 31 24 41 Z" fill="url(#g)" opacity="0.58"/>
+    <path d="M24 41 C36 37 42 29 44 21 C34 21 26 31 24 41 Z" fill="url(#g)" opacity="0.58"/>
+  </g>
+</svg>

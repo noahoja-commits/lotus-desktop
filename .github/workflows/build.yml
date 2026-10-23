@@ -4,6 +4,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   windows:
     runs-on: windows-latest
@@ -20,9 +23,19 @@ jobs:
         run: npx electron-builder --win portable
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload the portable exe
+      - name: Upload the portable exe (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: Lotus-portable-exe
           path: release/*.exe
           if-no-files-found: error
+      - name: Publish public Release
+        if: github.ref == 'refs/heads/main'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $exe = Get-ChildItem release/*.exe | Select-Object -First 1
+          gh release create "v${{ github.run_number }}" "$($exe.FullName)" `
+            --title "Lotus v${{ github.run_number }}" `
+            --notes "Portable Lotus for Windows. Download the .exe and double-click it. On the blue ``Windows protected your PC`` box, click **More info -> Run anyway** (it's unsigned). It fetches tonight's Powerball / Mega Millions jackpots on launch, so the Live/Offline banner is accurate."

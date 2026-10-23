@@ -52,6 +52,7 @@ async function createWindow(live) {
     minHeight: 560,
     backgroundColor: "#07070d",
     title: "Lotus",
+    icon: path.join(__dirname, "icon.png"),
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
