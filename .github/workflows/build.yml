@@ -1,0 +1,28 @@
+name: build-windows
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install deps
+        run: npm install
+      - name: Build web bundle (Vite)
+        run: npm run build
+      - name: Package portable Windows .exe (electron-builder)
+        run: npx electron-builder --win portable
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload the portable exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: Lotus-portable-exe
+          path: release/*.exe
+          if-no-files-found: error
